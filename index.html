@@ -14,7 +14,8 @@
             <div class="row">
               <div class="three wide center aligned column">
                 <div class="avatar-wrapper">
-                  <object class="avatar" data="./assets/images/avatar.jpg" role="img" aria-label="My profile picture"></object>
+                  <object id="avatar" class="avatar" data="./assets/images/avatar.jpg" role="img" aria-label="My profile picture"></object>
+                  <p id="speech" class="speech" hidden>Do you want some haduken?</p>
                 </div>
               </div>
               <div class="thirteen wide column">
@@ -466,5 +467,11 @@
     document.getElementById("hadouken").addEventListener("click", function() {
 			this.childNodes[3].play();
 		});
+    document.getElementById("avatar").addEventListener('mouseover', function() {
+      document.getElementById("speech").hidden = false;
+    });
+    document.getElementById("avatar").addEventListener('mouseout', function() {
+      document.getElementById("speech").hidden = true;
+    })
   </script>
 </html>
