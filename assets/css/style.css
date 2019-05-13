@@ -5,6 +5,9 @@
 .color.red:before {
   background-color: red;
 }
+main {
+  margin-bottom: 0;
+}
 p.speech {
   position: absolute;
   width: 200px;
