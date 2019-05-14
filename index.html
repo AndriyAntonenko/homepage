@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Résumé</title>
+	  <link rel="icon" type="image/png" sizes="512x512" href="./assets/images/favicon.jpg">
     <link rel="stylesheet" href="https://volodymyrkushnir.com/assets/stylesheets/base.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
@@ -444,20 +445,6 @@
                     ><span class="tag">KILL ALL OF AKUMA FAMILY</span>
                   </p>
                 </section>
-                <section>
-                  <h3>LIFE WAY IN PHOTOS📷</h3>
-                  <div data-index="0" class="slider">
-                    <img data-message="I and Ken on my first job" src="./assets/images/first-job.jpg" alt="first-job">
-                    <img data-message="I keep working with Ken" src="./assets/images/second-job.jpg" alt="second-job">
-                    <img data-message="I pose against the background of the defeated enemy" src="./assets/images/street-fighter3.jpg" alt="street-fighter3">
-                    <img data-message="This is me in a new, modern bandana" src="./assets/images/street-fighter4.jpg" alt="street-fighter4">
-                    <button id="left">&#10094;</button>
-                    <button id="right">&#10095;</button>
-                  </div>
-                </section>
-                <section>
-                  <span id="slide-message"></span>
-                </section>
               </div>
             </div>
           </div>
@@ -469,8 +456,6 @@
     </footer>
   </body>
   <script>
-    let index = 0;
-    makeSlideShow();
     function switchToColor(e) {
 			try {
         const page = document.querySelector(".page");
@@ -491,30 +476,6 @@
         console.log(error);
       }
 		}
-    function plusDivs(n) {
-      index += n;
-      makeSlideShow();
-    }
-    function makeSlideShow() {
-      let slider = document.querySelector('.slider');
-      let slideImages = document.querySelectorAll('.slider img');
-      let sliderMessage = document.getElementById('slide-message');
-      if ( index >= slideImages.length ) {
-        index = 0;
-      }
-      if ( index < 0 ) {
-        index = slideImages.length - 1;
-      }
-      
-      slideImages.forEach((img, i) => {
-        if (index === i) {
-          img.style.display = 'block';
-          sliderMessage.innerText = img.dataset.message;
-        } else {
-          img.style.display = 'none';
-        }
-      });
-    }
     document.getElementById("red").addEventListener('click', function(e) {
       switchToColor(e);
     });
@@ -526,14 +487,6 @@
     });
     document.getElementById("avatar").addEventListener('mouseout', function() {
       document.getElementById("speech").hidden = true;
-    });
-    document.getElementById("left").addEventListener("click", function() {
-      plusDivs(-1);
-      makeSlideShow();
-    });
-    document.getElementById("right").addEventListener("click", function() {
-      plusDivs(1);
-      makeSlideShow();
-    });
+    })
   </script>
 </html>
