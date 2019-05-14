@@ -455,17 +455,28 @@
     </footer>
   </body>
   <script>
-    function switchToColor(color) {
+    function switchToColor(e) {
 			try {
-				document.querySelectorAll(".page").forEach(function(page) {
-					page.style.borderColor = color;
-				});
+        const page = document.querySelector(".page");
+        let color = page.style.borderColor === "red" ? "midnightblue" : "red";
+
+        page.style.borderColor = color;
+
+        if( color === "midnightblue") {
+          document.head.removeChild(document.getElementById('style-element'));
+          e.target.innerText = 'RED COLOR';
+        } else {
+          const styleElem = document.head.appendChild(document.createElement("style"));
+          styleElem.id = 'style-element';
+          styleElem.innerHTML = `.color.red:before { background-color: midnightblue; }`;
+          e.target.innerText = 'AND MIDNIGHTBLUE TOO';
+        }
 			} catch (error) {
         console.log(error);
       }
 		}
-    document.getElementById("red").addEventListener('click', function() {
-      switchToColor("red");
+    document.getElementById("red").addEventListener('click', function(e) {
+      switchToColor(e);
     });
     document.getElementById("hadouken").addEventListener("click", function() {
 			this.childNodes[3].play();
