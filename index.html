@@ -2,7 +2,16 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="My very own personal website.">
+    <meta name="author" content="https://github.com/AndriyAntonenko/">
+    <meta name="robots" content="index,follow">
+    <meta property="og:description" content="― I do not compete with others, the only competition that challenges me is myself. As a fighter, friend and an employee I am known as contemplative, tortured and driven">
+	  <meta property="og:locale" content="en_US">
+	  <meta property="og:title" content="Résumé">
+	  <meta property="og:type" content="website">
+	  <meta property="og:url" content="https://andriyantonenko.github.io/homepage/">
     <title>Résumé</title>
+	  <link rel="icon" type="image/png" sizes="512x512" href="./assets/images/favicon.jpg">
     <link rel="stylesheet" href="https://volodymyrkushnir.com/assets/stylesheets/base.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
@@ -444,6 +453,20 @@
                     ><span class="tag">KILL ALL OF AKUMA FAMILY</span>
                   </p>
                 </section>
+                <section>	
+                  <h3>LIFE WAY IN PHOTOS📷</h3>	
+                  <div data-index="0" class="slider">	
+                    <img data-message="I and Ken on my first job" src="./assets/images/first-job.jpg" alt="first-job">	
+                    <img data-message="I keep working with Ken" src="./assets/images/second-job.jpg" alt="second-job">	
+                    <img data-message="I pose against the background of the defeated enemy" src="./assets/images/street-fighter3.jpg" alt="street-fighter3">	
+                    <img data-message="This is me in a new, modern bandana" src="./assets/images/street-fighter4.jpg" alt="street-fighter4">	
+                    <button id="left">&#10094;</button>	
+                    <button id="right">&#10095;</button>	
+                  </div>	
+                </section>	
+                <section>	
+                  <span id="slide-message"></span>	
+                </section>
               </div>
             </div>
           </div>
@@ -455,17 +478,54 @@
     </footer>
   </body>
   <script>
-    function switchToColor(color) {
+    let index = 0;	
+    makeSlideShow();
+    function switchToColor(e) {
 			try {
-				document.querySelectorAll(".page").forEach(function(page) {
-					page.style.borderColor = color;
-				});
+        const page = document.querySelector(".page");
+        let color = page.style.borderColor === "red" ? "midnightblue" : "red";
+
+        page.style.borderColor = color;
+
+        if( color === "midnightblue") {
+          document.head.removeChild(document.getElementById('style-element'));
+          e.target.innerText = 'RED COLOR';
+        } else {
+          const styleElem = document.head.appendChild(document.createElement("style"));
+          styleElem.id = 'style-element';
+          styleElem.innerHTML = `.color.red:before { background-color: midnightblue; }`;
+          e.target.innerText = 'AND MIDNIGHTBLUE TOO';
+        }
 			} catch (error) {
         console.log(error);
       }
 		}
-    document.getElementById("red").addEventListener('click', function() {
-      switchToColor("red");
+    function plusDivs(n) {	
+      index += n;	
+      makeSlideShow();	
+    }	
+    function makeSlideShow() {	
+      let slider = document.querySelector('.slider');	
+      let slideImages = document.querySelectorAll('.slider img');	
+      let sliderMessage = document.getElementById('slide-message');	
+      if ( index >= slideImages.length ) {	
+        index = 0;	
+      }	
+      if ( index < 0 ) {	
+        index = slideImages.length - 1;	
+      }	
+      	
+      slideImages.forEach((img, i) => {	
+        if (index === i) {	
+          img.style.display = 'block';	
+          sliderMessage.innerText = img.dataset.message;	
+        } else {	
+          img.style.display = 'none';	
+        }	
+      });	
+    }	
+    document.getElementById("red").addEventListener('click', function(e) {
+      switchToColor(e);
     });
     document.getElementById("hadouken").addEventListener("click", function() {
 			this.childNodes[3].play();
@@ -475,6 +535,14 @@
     });
     document.getElementById("avatar").addEventListener('mouseout', function() {
       document.getElementById("speech").hidden = true;
-    })
+    });
+    document.getElementById("left").addEventListener("click", function() {	
+      plusDivs(-1);	
+      makeSlideShow();	
+    });	
+    document.getElementById("right").addEventListener("click", function() {	
+      plusDivs(1);	
+      makeSlideShow();	
+    });
   </script>
 </html>

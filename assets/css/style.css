@@ -5,6 +5,46 @@
 .color.red:before {
   background-color: red;
 }
+main {
+  margin-bottom: 0;
+}
+.slider {
+  position: relative;
+}
+.slider img {
+  width: 100%;
+}
+#left,
+#right {
+  width: 30px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  padding: 4px;
+  border: none;
+  text-align: center;
+  z-index: 999;
+  background-color: rgba(25, 25, 112, 0);
+  color: whitesmoke;
+  outline: none;
+}
+#left:hover,
+#right:hover {
+  background-color: rgba(245, 245, 245, 0.2);
+  color: black;
+}
+#right {
+  right: 0;
+}
+#left {
+  left: 0;
+}
+#slide-message {
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+  font-size: 1.2em;
+}
 p.speech {
   position: absolute;
   width: 200px;
